@@ -16,17 +16,22 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
         
-            ## Your Value Proposition
+            ## Is the next play a run or a pass play?
 
-            Emphasize how the app will benefit users. Don't emphasize the underlying technology.
 
-            ✅ RUN is a running app that adapts to your fitness levels and designs personalized workouts to help you improve your running.
 
-            ❌ RUN is the only intelligent running app that uses sophisticated deep neural net machine learning to make your run smarter because we believe in ML driven workouts.
+            Can you tell if the next play will be a run or a pass play?
+
+
+            Use the predict portion of this app to predict what kind of play will be next.
+
+            Check out the insights page to see which NFL teams are the most predictable.  Does this predictability matter to their success? 
+
+            
 
             """
         ),
-        dcc.Link(dbc.Button('Your Call To Action', color='primary'), href='/predictions')
+        dcc.Link(dbc.Button('Predict the next play', color='primary'), href='/predictions')
     ],
     md=4,
 )
@@ -41,4 +46,4 @@ column2 = dbc.Col(
     ]
 )
 
-layout = dbc.Row([column1, column2])
+layout = dbc.Row([column1 , column2])

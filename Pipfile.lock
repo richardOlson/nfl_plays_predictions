@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6dd67adfaaef28ceda4ff96b49f769a3d46eaa319acf900027ea29764434f28c"
+            "sha256": "e20e571e563dbd6ec341cb8d9b10da72f3c88204dc52f7274346b82b51ed1c36"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -25,10 +25,10 @@
         },
         "dash": {
             "hashes": [
-                "sha256:678884297afaae08a638cf1bda61c8f89f7cf2c8fd15f36ea29c43559684f4fa"
+                "sha256:6a488d380f02ba7c8e624a7c4d89f9e39368b8d9ed4a6f463364894a237f1fd8"
             ],
             "index": "pypi",
-            "version": "==1.9.0"
+            "version": "==1.9.1"
         },
         "dash-bootstrap-components": {
             "hashes": [
@@ -39,9 +39,16 @@
         },
         "dash-core-components": {
             "hashes": [
-                "sha256:6ed00e421e4ff5ebe1bb91b0add168ef89cf2afbdff1e0cef91633dd338569c8"
+                "sha256:9a8901b67d3a1038fb79153c17234d5713c2d7cca0382718c6376c786b280e63"
             ],
-            "version": "==1.8.0"
+            "version": "==1.8.1"
+        },
+        "dash-daq": {
+            "hashes": [
+                "sha256:8370e6624c2b2dd8c53ed8af9a5a376d4b4a8bb4eb4899b57ae8e55fdb8bad8f"
+            ],
+            "index": "pypi",
+            "version": "==0.3.3"
         },
         "dash-html-components": {
             "hashes": [
@@ -57,9 +64,9 @@
         },
         "dash-table": {
             "hashes": [
-                "sha256:d30cd8f2212134a576c131f00d403fc6b5ef54579106178fc8d6309500539f07"
+                "sha256:64905af3214b509a95769ba9dfc884677696c270a572ed06b52c57fdcf9d9c77"
             ],
-            "version": "==4.6.0"
+            "version": "==4.6.1"
         },
         "flask": {
             "hashes": [
