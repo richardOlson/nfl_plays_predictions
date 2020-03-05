@@ -10,9 +10,14 @@ import dash_daq as daq
 # Imports from this application
 from app import app
 from pickle import load
+import pandas as pd
 
+
+
+# Getting the xgb and the features that we need for the model
 #load(open(fileName, 'rb')) C:\Users\rich\Richard_python\nfl_dash\nfl_plays_predictions\assets
 theXgb = load(open(r'assets\xgb.pkl', 'rb'))
+featuresDataFrame = load(open(r"assets\features.py", "rb"))
 
 
 # 2 column layout. 1st column width = 4/12
@@ -43,12 +48,13 @@ column1 = dbc.Col(
 
 
         dcc.RadioItems(
+            id="show_proba",
             options=[
-                {'label': 'Don\'t show probability',  'value': 'No'},
-                {'label': 'Show Probability', 'value': 'Yes'},
+                {'label': 'Don\'t show probability',  'value': 1},
+                {'label': 'Show Probability', 'value': 0},
 
             ],
-            value='No'
+            value=0
         ),
 
 
@@ -284,14 +290,36 @@ layout = html.Div(
 
 
 
-@app.callback(Output('output-state', 'children'),
-              [Input('submit-button', 'n_clicks')],
-              [State('input-1-state', 'value'),
-               State('input-2-state', 'value')])
-def update_output(n_clicks, input1, input2):
-    return u'''
-        The Button has been pressed {} times,
-        Input 1 is "{}",
-        and Input 2 is "{}"
-    '''.format(n_clicks, input1, input2)
+
+
+
+def setData():
+    #TODO need to fix this
+    return None
+
+
+
+@app.callback(Output("predHere", 'children'),
+              [Input('predict_button', 'n_clicks')],
+              [State('show_proba', 'value'),
+               State('quarter', 'value'),
+               State('minute', 'value'),
+                State('seconds', 'value'),
+                State('down', 'value'),
+                State('yard_to_go', 'value'),
+                State('formation', 'value'),
+                State('prev_down', 'value'),
+                State('yards_needed', 'value'),
+                State('yards_gained', 'value'),
+                State('prev_play', 'value'),
+                State('what_happened', 'value'),
+
+               ])
+def update_output(n_clicks, proba_val, quarter_val, min_val, sec_val,
+                  down_val, yard_to_go_val, formation_val,
+                  prev_down_val, yards_needed_val, yards_gained_val,
+                  prev_play_val, what_happened_val):
+    x_train = setData()
+    #theXgb.predict_proba(x_train)
+    return
 
