@@ -50,10 +50,12 @@ column1 = dbc.Col(
         dcc.RadioItems(
             id="show_proba",
             options=[
-                {'label': 'Don\'t show probability',  'value': 1},
+                {'label': 'Don\'t show probability ',  'value': 1},
                 {'label': 'Show Probability', 'value': 0},
 
+
             ],
+            labelStyle={'width': '50%'},
             value=0
         ),
 
@@ -75,6 +77,102 @@ column2 = dbc.Col(
             
 
             """
+        ),
+
+        html.Div(
+            children=[
+                html.Div(children=[
+
+                html.Div(
+                    "Offense   ",
+                    style={'width': '20%',
+                           'font-size':'small', 'display':'inline-block', 'marginLeft':'2em'}
+                ),
+
+                html.Div(
+                    "Defense",
+                    style={'width': '20%',
+                           'font-size':'small', 'display':'inline-block'}
+                ),
+
+                    ]
+
+                ),
+
+
+                    dcc.Input(
+                        id='offense_score',
+                        placeholder='score',
+                        persistence=True,
+                        max=99,
+                        min=0,
+                        step=1,
+                        type='number',
+                        style={'display': 'inline-block','marginBottom': '1em',
+                               'font-size':'small', 'width': '25%'}
+                    ),
+
+                        dcc.Input(
+                            id='defense_score',
+                            placeholder='score',
+                            persistence=True,
+                            max=99,
+                            min=0,
+                            step=1,
+                            type='number',
+                            style={'display': 'inline-block','marginBottom': '1em',
+                                   'font-size':'small', 'width': '25%'}
+                        ),
+                    ],
+
+
+
+
+
+        ),
+
+                dcc.Input(
+                            id='yardLine',
+                            placeholder='yard line',
+                            persistence=True,
+                            max=99,
+                            min=0,
+                            step=1,
+                            type='number',
+                            style={'display': 'inline-block','marginBottom': '1em',
+                                   'font-size':'small', 'width': '25%'}
+                        ),
+            dcc.RadioItems(
+                        id="own_yard_line",
+                        options=[
+                            {'label': 'Own',  'value': 1},
+                            {'label': 'Opposing', 'value': 0},
+
+
+                        ],
+                        labelStyle={'font-size':'x-small'},
+                        value=0,
+                        style={'display': 'inline-block', 'marginBottom': '1em', 'marginLeft':'1em',
+                                'font-size': 'small', 'width': '25%'}
+                    ),
+        html.Div(children=[
+                html.Div('Not Going for Two',
+                         style={'display': 'inline-block', 'marginBottom': '1em',
+                                'font-size': 'x-small','width':'5%'}
+                         ),
+                daq.BooleanSwitch(
+                  id='two_point',
+                  on=0,
+                    style={'display': 'inline-block', 'marginBottom': '1em', 'marginLeft': '1em',
+                                'font-size': 'x-small', }
+                ) ,
+
+                html.Div('Going for Two',
+                         style={'display': 'inline-block', 'marginBottom': '1em', 'marginLeft': '1em',
+                                'font-size': 'x-small', 'width': '5%'}
+                         ),
+
+            ]
         ),
 
         html.Div(children=[
@@ -162,10 +260,10 @@ column2 = dbc.Col(
             dcc.Dropdown(
                     id='formation',
                     options=[
-                        {'label': 'Under Center', 'value': 'under_center'},
-                        {'label': 'Shotgun', 'value': 'shotgun'},
-                        {'label': 'No Huddle Shotgun', 'value': 'no_huddle_shotgun'},
-                        {'label': 'No Huddle', 'value': 'no_huddle'},
+                        {'label': 'Under Center', 'value': 'Formation_UNDER CENTER'},
+                        {'label': 'Shotgun', 'value': 'Formation_SHOTGUN'},
+                        {'label': 'No Huddle Shotgun', 'value': 'Formation_NO HUDDLE SHOTGUN'},
+                        {'label': 'No Huddle', 'value': 'Formation_NO HUDDLE'},
                         {'label': 'Wildcat', 'value': 'wildcat'},
                         {'label': 'Other', 'value': 'nan'},
                     ],
@@ -217,7 +315,7 @@ column3 = dbc.Col(
         dcc.Input(
                         id='yards_needed',
                         placeholder='Yards for 1st down',
-                        persistence=True,
+                        persistence=False,
                         type='number',
                         max=100, 
                         min=0,
@@ -230,7 +328,7 @@ column3 = dbc.Col(
         dcc.Input(
                         id='yards_gained',
                         placeholder='Yards gained',
-                        persistence=True,
+                        persistence=False,
                         type='number',
                         max=100, 
                         min=-99,
