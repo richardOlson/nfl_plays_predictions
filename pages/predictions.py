@@ -59,7 +59,10 @@ column1 = dbc.Col(
             value=0
         ),
 
-
+        html.Div(id="predHere",
+                        style={'width': '20%',
+                           'font-size':'large', 'color':'#de7518' }
+                  ),
     
     
     ],
@@ -105,7 +108,7 @@ column2 = dbc.Col(
                         placeholder='score',
                         persistence=True,
                         max=99,
-                        value=0,
+                        #value=0,
                         min=0,
                         step=1,
                         type='number',
@@ -118,7 +121,7 @@ column2 = dbc.Col(
                             placeholder='score',
                             type='number',
                             persistence=True,
-                            value=0,
+                            #value=0,
                             max=99,
                             min=0,
                             step=1,
@@ -141,7 +144,7 @@ column2 = dbc.Col(
                             type='number',
                             persistence=True,
                             max=50,
-                            value=0,
+                            #value=0,
                             min=0,
                             step=1,
 
@@ -184,7 +187,7 @@ column2 = dbc.Col(
                         {'label': '4th Qtr', 'value': 4},
                         {'label': 'Overtime', 'value': 5},
                     ],
-                    value=1,
+                    #value=1,
                     searchable=True,
                     placeholder="Quarter",
                     style={'width': '63%',  'color':'black', 'marginBottom': '1em',
@@ -202,7 +205,7 @@ column2 = dbc.Col(
                     min=0,
                     step=1,
 
-                    value=15,
+                    #value=15,
 
                     style={'width': '20%', 'display': 'inline-block','marginBottom': '1em',
                            'font-size':'small'}
@@ -216,7 +219,7 @@ column2 = dbc.Col(
                     type='number',
                     max=59, 
                     min=0,
-                    value=0,
+                    #value=0,
                     step=1,
 
                     style={'width': '20%', 'display': 'inline-block','marginBottom': '1em', 'font-size':'small'}
@@ -236,7 +239,7 @@ column2 = dbc.Col(
                         {'label': '4th Down', 'value': 4},
                         {'label': 'Two Point Conv', 'value': 5},
                     ],
-                    value=1,
+                    #value=1,
                     searchable=True,
                     placeholder="Down",
                     style={'width': '63%',  'color':'black' ,'marginBottom': '1em'}
@@ -253,7 +256,7 @@ column2 = dbc.Col(
                         max=100, 
                         min=0,
                         step=1,
-                        value=0,
+                        #value=0,
                         style={'width': '40%', 'display': 'inline-block','marginBottom': '1em',
                                'font-size':'small'}
                         ), 
@@ -313,31 +316,31 @@ column3 = dbc.Col(
                            'font-size':'small'}
                 ),
 
+            dcc.Input(
+                        id='yards_gained',
+                        placeholder='Yards gained',
+                        persistence=False,
+                        type='number',
+                        max=100,
+                        min=-99,
+                        step=1,
+                        #value=0,
+                        style={'width': '60%', 'display': 'inline-block','marginBottom': '1em'}
+                        ),
 
         dcc.Input(
                         id='yards_needed',
-                        placeholder='Yards for 1st down',
+                        placeholder='Yards to go',
                         persistence=False,
                         type='number',
                         max=100, 
                         min=0,
                         step=1,
-                        value=0,
+                        #value=0,
                         style={'width': '60%', 'display': 'inline-block','marginBottom': '1em' ,
                                'font-size':'small'}
                         ),
 
-        dcc.Input(
-                        id='yards_gained',
-                        placeholder='Yards gained',
-                        persistence=False,
-                        type='number',
-                        max=100, 
-                        min=-99,
-                        step=1,
-                        value=0,
-                        style={'width': '60%', 'display': 'inline-block','marginBottom': '1em'}
-                        ),
 
 
         html.Div(
@@ -383,7 +386,7 @@ layout = html.Div(
 
 
     dbc.Row([column1, column2, column3]),
-    dbc.Row(dbc.Col(html.Div(id="predHere", ),
+    dbc.Row(dbc.Col(
                     width={"size": 6, "offset": 3},))
 
     ]
@@ -473,17 +476,17 @@ def getCompletedList(catListPass, catListRun, catNamesRun, catNamesPass):
     theList = [
 
         'prev_offense_play_No Previous',
-        'prev_ply_bad_run',
-        'prev_ply_bad_pass',
-        'prev_ply_no_succ_run',
-        'prev_ply_no_succ_pass',
-        'prev_ply_little_succ_pass',
-        'prev_ply_mild_succ_run',
-        'prev_ply_mild_succ_pass',
-        'prev_ply_succ_run',
-        'prev_ply_succ_pass',
-        'prev_ply_high_succ_run',
-        'prev_ply_high_succ_pass',
+          'prev_ply_bad_run',
+          'prev_ply_bad_pass',
+          'prev_ply_no_succ_run',
+          'prev_ply_no_succ_pass',
+          'prev_ply_little_succ_run',
+          'prev_ply_little_succ_pass',
+          'prev_ply_mild_succ_run',
+          'prev_ply_succ_run',
+          'prev_ply_succ_pass',
+          'prev_ply_high_succ_run',
+          'prev_ply_high_succ_pass',
 
     ]
     finalList.append(('prev_offense_play_No Previous', 0))
@@ -672,9 +675,9 @@ def createSuccesCategories(prev_down_val, yards_needed_val, yards_gained_val,
 
 def makeformations(formation_val, theList):
   formations = ['Formation_NO HUDDLE SHOTGUN',
-                'Formation_UNDER CENTER',
-                'Formation_SHOTGUN',
-                'Formation_NO HUDDLE',]
+          'Formation_UNDER CENTER',
+          'Formation_SHOTGUN',
+          'Formation_NO HUDDLE',]
   for i in range(len(formations)):
     if formations[i] == formation_val:
       theList.append((formations[i], 1))
@@ -739,70 +742,73 @@ def update_output(n_clicks, quarter_val, yard_line_val, formation_val,
     # the quarter, yards gained on the previous play , type of play it was
     # what happened in the play, the formation of current play,
 
+    if n_clicks is not None:
+        featureList = ['Quarter',
+          'YardLine',
+          'Formation_NO HUDDLE SHOTGUN',
+          'Formation_UNDER CENTER',
+          'Formation_SHOTGUN',
+          'Formation_NO HUDDLE',
+          'IsTwoPointConversion',
+          'SecondsLeftInGame',
+          'Score',
+          'yards_gained_prev_off_play',
+          'prev_offense_play_Pass',
+          'prev_offense_play_Rush',
+          'prev_offense_play_No Previous',
+          'prev_ply_bad_run',
+          'prev_ply_bad_pass',
+          'prev_ply_no_succ_run',
+          'prev_ply_no_succ_pass',
+          'prev_ply_little_succ_run',
+          'prev_ply_little_succ_pass',
+          'prev_ply_mild_succ_run',
+          'prev_ply_succ_run',
+          'prev_ply_succ_pass',
+          'prev_ply_high_succ_run',
+          'prev_ply_high_succ_pass',
+          'first_to_go',
+          'second_to_go',
+          'third_to_go',
+          'fourth_to_go',
+          'two_point_to_go']
+        # creating the data for the prediction
+        # putting everything in  a list of tuples
+        theList = []
 
-    featureList = ['Quarter',
-                   'YardLine',
-                   'Formation_NO HUDDLE SHOTGUN',
-                   'Formation_UNDER CENTER',
-                   'Formation_SHOTGUN',
-                   'Formation_NO HUDDLE',
-                   'IsTwoPointConversion',
-                   'SecondsLeftInGame',
-                   'Score',
-                   'yards_gained_prev_off_play',
-                   'prev_offense_play_Pass',
-                   'prev_offense_play_Rush',
-                   'prev_offense_play_No Previous',
-                   'prev_ply_bad_run',
-                   'prev_ply_bad_pass',
-                   'prev_ply_no_succ_run',
-                   'prev_ply_no_succ_pass',
-                   'prev_ply_little_succ_pass',
-                   'prev_ply_mild_succ_run',
-                   'prev_ply_mild_succ_pass',
-                   'prev_ply_succ_run',
-                   'prev_ply_succ_pass',
-                   'prev_ply_high_succ_run',
-                   'prev_ply_high_succ_pass',
-                   'first_to_go',
-                   'second_to_go',
-                   'third_to_go',
-                   'fourth_to_go',
-                   'two_point_to_go']
-    # creating the data for the prediction
-    # putting everything in  a list of tuples
-    theList = []
+        theList.append((featureList[0], quarter_val))
+        theList.append((featureList[1], makeYardLine(yard_line_val, own_val)))
+        theList = makeformations(formation_val, theList)
 
-    theList.append((featureList[0], quarter_val))
-    theList.append((featureList[1], makeYardLine(yard_line_val, own_val)))
-    theList = makeformations(formation_val, theList)
+        theList.append((featureList[6], fillTwoPoint(down_val)))
+        theList.append((featureList[7], makeSecondsTillEnd(min_val, sec_val, quarter_val)))
+        theList.append((featureList[8], your_score_val - opp_score_val))
+        theList.append((featureList[9], yards_gained_val))
+        theList = makePrevPlay(prev_play_val, theList)
+        theList = createSuccesCategories(prev_down_val, yards_needed_val, yards_gained_val,
+                                         prev_play_val, what_happened_val, theList)
+        theList = makeDownCols(theList, down_val, yard_to_go_val)
 
-    theList.append((featureList[6], fillTwoPoint(down_val)))
-    theList.append((featureList[7], makeSecondsTillEnd(min_val, sec_val, quarter_val)))
-    theList.append((featureList[8], your_score_val - opp_score_val))
-    theList.append((featureList[9], yards_gained_val))
-    theList = makePrevPlay(prev_play_val, theList)
-    theList = createSuccesCategories(prev_down_val, yards_needed_val, yards_gained_val,
-                                     prev_play_val, what_happened_val, theList)
-    theList = makeDownCols(theList, down_val, yard_to_go_val)
+        # now will build the dataFrame
+        theData = pd.DataFrame(data=dict(theList), index=[0])
+        # changing it to a numpy array
+        theValues = theData
 
-    # now will build the dataFrame
-    theData = pd.DataFrame(data=dict(theList), index=[0])
+        choices = ['Pass', 'Rush']
+        theIndex = 0
+        thePred = ""
+        theProbas = theXgb.predict_proba(theValues)
 
-    choices = ['Pass', 'Rush']
-    theIndex = 0
-    thePred = ""
-    theProbas = theXgb.predict_proba(theData)
+        if theProbas[:,0] > theProbas[:,1]:
+            thePred = 'Pass'
+        else:
+            theIndex = 1
+            thePred = "Run"
 
-    if theProbas[0] > theProbas[1]:
-        thePred = 'Pass'
-    else:
-        theIndex = 1
-        thePred = "Run"
-
-    # 1 means don't show the proba value
-    if proba_val == 0:
-        return f"A \"{thePred}\" was predicted!"
-    else:
-        return f"A \"{thePred}\" was predicted with a probability of {theProbas[theIndex]}"
+        # 1 means don't show the proba value
+        if proba_val == 1:
+            return f" \"{thePred}\" was predicted!"
+        else:
+            
+            return f" \"{thePred}\" was predicted with a probability of {theProbas[:,theIndex]}"
 
