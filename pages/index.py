@@ -13,7 +13,7 @@ import pandas as pd
 from app import app
 
 
-teamAcc = load(open(r"assets\teamAccuracy.pkl", "rb"))
+teamAcc = load(open("assets/teamAccuracy.pkl", "rb"))
 
 # 2 column layout. 1st column width = 4/12
 # https://dash-bootstrap-components.opensource.faculty.ai/l/components/layout
