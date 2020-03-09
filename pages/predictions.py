@@ -16,8 +16,8 @@ import pandas as pd
 
 # Getting the xgb and the features that we need for the model
 #load(open(fileName, 'rb')) C:\Users\rich\Richard_python\nfl_dash\nfl_plays_predictions\assets
-theXgb = load(open(r'assets\xgb.pkl', 'rb'))
-featuresDataFrame = load(open(r"assets\features.py", "rb"))
+theXgb = load(open("assets/xgb.pkl", "rb"))
+featuresDataFrame = load(open("assets/features.py", "rb"))
 
 
 # 2 column layout. 1st column width = 4/12
