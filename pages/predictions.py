@@ -691,7 +691,7 @@ def makeformations(formation_val, theList):
 #Opposing', 'value': 0},
 def makeYardLine(yard_line_val, own_val):
   if own_val == 1:
-    return yardLine_val
+    return yard_line_val
   else:
     theYards = yard_line_val
     theYardLine = 50 + (50 - theYards)
