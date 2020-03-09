@@ -15,8 +15,8 @@ navbar = dbc.NavbarSimple(
     brand_href='/', 
     children=[
         dbc.NavItem(dcc.Link('Predictions', href='/predictions', className='nav-link')), 
-        dbc.NavItem(dcc.Link('Insights', href='/insights', className='nav-link')), 
-        dbc.NavItem(dcc.Link('Process', href='/process', className='nav-link')), 
+        #dbc.NavItem(dcc.Link('Insights', href='/insights', className='nav-link')),
+        #dbc.NavItem(dcc.Link('Process', href='/process', className='nav-link')),
     ],
     sticky='top',
     color='dark', 
@@ -35,12 +35,14 @@ footer = dbc.Container(
         dbc.Col(
             html.P(
                 [
+                    #<i class="fab fa-medium"></i>
                     html.Span('Richard Olson', className='mr-2'), 
                     html.A(html.I(className='fas fa-envelope-square mr-1'), href='mailto:rchiro@gmail.com'), 
                     html.A(html.I(className='fab fa-github-square mr-1'), href='https://github.com/richardOlson/nfl_2019_play_by_play'), 
                     #html.A(html.I(className='fab fa-linkedin mr-1'), href='https://www.linkedin.com/in/<you>/'), 
-                    #html.A(html.I(className='fab fa-twitter-square mr-1'), href='https://twitter.com/<you>'), 
-                ], 
+                    #html.A(html.I(className='fab fa-twitter-square mr-1'), href='https://twitter.com/<you>'),
+                    html.A(html.I(className='fab fa-medium mr-1'), href='https://twitter.com/<you>'),
+                ],
                 className='lead'
             )
         )

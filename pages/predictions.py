@@ -50,8 +50,8 @@ column1 = dbc.Col(
         dcc.RadioItems(
             id="show_proba",
             options=[
-                {'label': 'Don\'t show probability ',  'value': 1},
-                {'label': 'Show Probability', 'value': 0},
+                {'label': 'Don\'t show probability ',  'value': 0},
+                {'label': 'Show Probability', 'value': 1},
 
 
             ],
@@ -60,7 +60,7 @@ column1 = dbc.Col(
         ),
 
         html.Div(id="predHere",
-                        style={'width': '20%',
+                        style={'width': '75%',
                            'font-size':'large', 'color':'#de7518' }
                   ),
     
@@ -160,6 +160,7 @@ column2 = dbc.Col(
                         options=[
                             {'label': 'Own',  'value': 1},
                             {'label': 'Opposing', 'value': 0},
+
 
 
                         ],
@@ -476,17 +477,17 @@ def getCompletedList(catListPass, catListRun, catNamesRun, catNamesPass):
     theList = [
 
         'prev_offense_play_No Previous',
-          'prev_ply_bad_run',
-          'prev_ply_bad_pass',
-          'prev_ply_no_succ_run',
-          'prev_ply_no_succ_pass',
-          'prev_ply_little_succ_run',
-          'prev_ply_little_succ_pass',
-          'prev_ply_mild_succ_run',
-          'prev_ply_succ_run',
-          'prev_ply_succ_pass',
-          'prev_ply_high_succ_run',
-          'prev_ply_high_succ_pass',
+             'prev_ply_bad_run',
+             'prev_ply_bad_pass',
+             'prev_ply_no_succ_run',
+             'prev_ply_no_succ_pass',
+             'prev_ply_little_succ_pass',
+             'prev_ply_mild_succ_run',
+             'prev_ply_mild_succ_pass',
+             'prev_ply_succ_run',
+             'prev_ply_succ_pass',
+             'prev_ply_high_succ_run',
+             'prev_ply_high_succ_pass',
 
     ]
     finalList.append(('prev_offense_play_No Previous', 0))
@@ -743,72 +744,114 @@ def update_output(n_clicks, quarter_val, yard_line_val, formation_val,
     # what happened in the play, the formation of current play,
 
     if n_clicks is not None:
-        featureList = ['Quarter',
-          'YardLine',
-          'Formation_NO HUDDLE SHOTGUN',
-          'Formation_UNDER CENTER',
-          'Formation_SHOTGUN',
-          'Formation_NO HUDDLE',
-          'IsTwoPointConversion',
-          'SecondsLeftInGame',
-          'Score',
-          'yards_gained_prev_off_play',
-          'prev_offense_play_Pass',
-          'prev_offense_play_Rush',
-          'prev_offense_play_No Previous',
-          'prev_ply_bad_run',
-          'prev_ply_bad_pass',
-          'prev_ply_no_succ_run',
-          'prev_ply_no_succ_pass',
-          'prev_ply_little_succ_run',
-          'prev_ply_little_succ_pass',
-          'prev_ply_mild_succ_run',
-          'prev_ply_succ_run',
-          'prev_ply_succ_pass',
-          'prev_ply_high_succ_run',
-          'prev_ply_high_succ_pass',
-          'first_to_go',
-          'second_to_go',
-          'third_to_go',
-          'fourth_to_go',
-          'two_point_to_go']
-        # creating the data for the prediction
-        # putting everything in  a list of tuples
-        theList = []
+        # Checking to make sure that all the fields have
+        # been entered
+        if quarter_val is not None and  yard_line_val is not None and formation_val is not None  and \
+                   min_val is not None and sec_val is not None and your_score_val is not None and \
+                opp_score_val is not None and own_val is not None and \
+                  down_val is not None and yard_to_go_val is not None and proba_val is not None and \
+                  prev_down_val is not None and  yards_needed_val is not None and \
+                yards_gained_val is not None and \
+                  prev_play_val is not None and  what_happened_val is not None:
 
-        theList.append((featureList[0], quarter_val))
-        theList.append((featureList[1], makeYardLine(yard_line_val, own_val)))
-        theList = makeformations(formation_val, theList)
+            # ['Quarter',
+            #  'YardLine',
+            #  'Formation_NO HUDDLE SHOTGUN',
+            #  'Formation_UNDER CENTER',
+            #  'Formation_SHOTGUN',
+            #  'Formation_NO HUDDLE',
+            #  'IsTwoPointConversion',
+            #  'SecondsLeftInGame',
+            #  'Score',
+            #  'yards_gained_prev_off_play',
+            #  'prev_offense_play_Pass',
+            #  'prev_offense_play_Rush',
+            #  'prev_offense_play_No Previous',
+            #  'prev_ply_bad_run',
+            #  'prev_ply_bad_pass',
+            #  'prev_ply_no_succ_run',
+            #  'prev_ply_no_succ_pass',
+            #  'prev_ply_little_succ_pass',
+            #  'prev_ply_mild_succ_run',
+            #  'prev_ply_mild_succ_pass',
+            #  'prev_ply_succ_run',
+            #  'prev_ply_succ_pass',
+            #  'prev_ply_high_succ_run',
+            #  'prev_ply_high_succ_pass',
+            #  'first_to_go',
+            #  'second_to_go',
+            #  'third_to_go',
+            #  'fourth_to_go',
+            #  'two_point_to_go']
+            featureList = ['Quarter',
+              'YardLine',
+              'Formation_NO HUDDLE SHOTGUN',
+              'Formation_UNDER CENTER',
+              'Formation_SHOTGUN',
+              'Formation_NO HUDDLE',
+              'IsTwoPointConversion',
+              'SecondsLeftInGame',
+              'Score',
+              'yards_gained_prev_off_play',
+              'prev_offense_play_Pass',
+              'prev_offense_play_Rush',
+              'prev_offense_play_No Previous',
+              'prev_ply_bad_run',
+              'prev_ply_bad_pass',
+              'prev_ply_no_succ_run',
+              'prev_ply_no_succ_pass',
+              'prev_ply_little_succ_run',
+              'prev_ply_little_succ_pass',
+              'prev_ply_mild_succ_run',
+              'prev_ply_succ_run',
+              'prev_ply_succ_pass',
+              'prev_ply_high_succ_run',
+              'prev_ply_high_succ_pass',
+              'first_to_go',
+              'second_to_go',
+              'third_to_go',
+              'fourth_to_go',
+              'two_point_to_go']
+            # creating the data for the prediction
+            # putting everything in  a list of tuples
+            theList = []
 
-        theList.append((featureList[6], fillTwoPoint(down_val)))
-        theList.append((featureList[7], makeSecondsTillEnd(min_val, sec_val, quarter_val)))
-        theList.append((featureList[8], your_score_val - opp_score_val))
-        theList.append((featureList[9], yards_gained_val))
-        theList = makePrevPlay(prev_play_val, theList)
-        theList = createSuccesCategories(prev_down_val, yards_needed_val, yards_gained_val,
-                                         prev_play_val, what_happened_val, theList)
-        theList = makeDownCols(theList, down_val, yard_to_go_val)
+            theList.append((featureList[0], quarter_val))
+            theList.append((featureList[1], makeYardLine(yard_line_val, own_val)))
+            theList = makeformations(formation_val, theList)
 
-        # now will build the dataFrame
-        theData = pd.DataFrame(data=dict(theList), index=[0])
-        # changing it to a numpy array
-        theValues = theData
+            theList.append((featureList[6], fillTwoPoint(down_val)))
+            theList.append((featureList[7], makeSecondsTillEnd(min_val, sec_val, quarter_val)))
+            theList.append((featureList[8], your_score_val - opp_score_val))
+            theList.append((featureList[9], yards_gained_val))
+            theList = makePrevPlay(prev_play_val, theList)
+            theList = createSuccesCategories(prev_down_val, yards_needed_val, yards_gained_val,
+                                             prev_play_val, what_happened_val, theList)
+            theList = makeDownCols(theList, down_val, yard_to_go_val)
 
-        choices = ['Pass', 'Rush']
-        theIndex = 0
-        thePred = ""
-        theProbas = theXgb.predict_proba(theValues)
+            # now will build the dataFrame
+            theData = pd.DataFrame(data=dict(theList), index=[0])
+            # changing it to a numpy array
+            theValues = theData
 
-        if theProbas[:,0] > theProbas[:,1]:
-            thePred = 'Pass'
+            choices = ['Pass', 'Rush']
+            theIndex = 0
+            thePred = ""
+            theProbas = theXgb.predict_proba(theValues)
+
+            if theProbas[0,0] > theProbas[0,1]:
+                thePred = 'Pass'
+            else:
+                theIndex = 1
+                thePred = "Run"
+
+            # 0 means don't show the proba value
+            if proba_val == 0:
+                return f" \"{thePred}\" was predicted!"
+            else:
+                # getting the probability set up
+                theProb = (theProbas[0,theIndex]) * 100
+                return f" \"{thePred}\" was predicted with a probability of {theProb:.2f}%"
+
         else:
-            theIndex = 1
-            thePred = "Run"
-
-        # 1 means don't show the proba value
-        if proba_val == 1:
-            return f" \"{thePred}\" was predicted!"
-        else:
-            
-            return f" \"{thePred}\" was predicted with a probability of {theProbas[:,theIndex]}"
-
+            return f"You need to make sure all fields are entered"
