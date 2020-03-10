@@ -41,7 +41,7 @@ footer = dbc.Container(
                     html.A(html.I(className='fab fa-github-square mr-1'), href='https://github.com/richardOlson/nfl_2019_play_by_play'), 
                     #html.A(html.I(className='fab fa-linkedin mr-1'), href='https://www.linkedin.com/in/<you>/'), 
                     #html.A(html.I(className='fab fa-twitter-square mr-1'), href='https://twitter.com/<you>'),
-                    html.A(html.I(className='fab fa-medium mr-1'), href='https://twitter.com/<you>'),
+                    html.A(html.I(className='fab fa-medium mr-1'), href='https://medium.com/@Richard_Olson/nfl-plays-are-they-predictable-and-does-it-matter-d5f3b20548f3'),
                 ],
                 className='lead'
             )
