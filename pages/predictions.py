@@ -164,7 +164,7 @@ column2 = dbc.Col(
 
 
                         ],
-                        labelStyle={'font-size':'x-small'},
+                        labelStyle={'font-size':'x-small', 'marginLeft':'1em'},
                         value=0,
                         style={'display': 'inline-block', 'marginBottom': '1em', 'marginLeft':'1em' ,
                                'marginTop':'0em', 'font-size': 'small', 'width': '50%'}
@@ -705,7 +705,7 @@ def fillTwoPoint(down_val):
     else:
         return 0
 
-
+# This is the function that will make the 
 
 @app.callback(Output("predHere", 'children'),
               [Input('predict_button', 'n_clicks')],
